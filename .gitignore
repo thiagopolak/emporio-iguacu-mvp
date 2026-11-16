@@ -221,3 +221,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Configurações locais e arquivos sensíveis
+.env.*
+!.env.example
+
+# Bancos de dados locais e arquivos de backup
+*.sqlite3
+*.sqlite3-journal
+*.dump
+*.bak
+
+# Arquivos temporários do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
