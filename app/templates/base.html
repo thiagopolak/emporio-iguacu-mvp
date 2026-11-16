@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Empório Iguaçu{% endblock %}</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+<body>
+
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('main.index') }}">
+            <span>EMPÓRIO</span>
+            <strong>IGUAÇU</strong>
+            <small>DESDE 1986</small>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('main.index') }}">Início</a>
+            <a href="#catalogo">Produtos</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        Empório Iguaçu · Tradição desde 1986
+    </footer>
+
+</body>
+</html>

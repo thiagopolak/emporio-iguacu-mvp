@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Catálogo | Empório Iguaçu{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <span class="eyebrow">TRADIÇÃO E QUALIDADE</span>
+
+    <h1>Bem-vindo ao Empório Iguaçu!</h1>
+
+    <p>
+        Produtos naturais, granel e artesanais
+        selecionados para você.
+    </p>
+</section>
+
+<section id="catalogo" class="catalog">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">NOSSO CATÁLOGO</span>
+            <h2>Produtos em destaque</h2>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        {% for produto in produtos %}
+        <article class="product-card">
+
+            <span class="category">
+                {{ produto.categoria }}
+            </span>
+
+            <h3>{{ produto.nome }}</h3>
+
+            <p>{{ produto.descricao }}</p>
+
+            <div class="price">
+                R$ {{ "%.2f"|format(produto.preco) }}
+                <small>/ {{ produto.unidade }}</small>
+            </div>
+
+            <button type="button" disabled>
+                Em breve
+            </button>
+
+        </article>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
