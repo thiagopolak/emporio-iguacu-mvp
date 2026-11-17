@@ -17,39 +17,99 @@
 </section>
 
 <section id="catalogo" class="catalog">
+
     <div class="section-heading">
-        <div>
-            <span class="eyebrow">NOSSO CATÁLOGO</span>
-            <h2>Produtos em destaque</h2>
+        <span class="eyebrow">NOSSO CATÁLOGO</span>
+        <h2>Conheça nossos produtos</h2>
+        <p>Confira as opções disponíveis em nossa loja.</p>
+    </div>
+
+    {% set possui_produtos = namespace(valor=false) %}
+
+    {% for categoria in categorias %}
+        {% if categoria.produtos %}
+            {% set possui_produtos.valor = true %}
+
+            <section class="category-section">
+
+                <h3 class="category-title">
+                    {{ categoria.nome }}
+                </h3>
+
+                {% if categoria.descricao %}
+                    <p class="category-description">
+                        {{ categoria.descricao }}
+                    </p>
+                {% endif %}
+
+                <div class="product-grid">
+
+                    {% for produto in categoria.produtos %}
+
+                        <article class="product-card">
+
+                            <span class="category">
+                                {{ categoria.nome }}
+                            </span>
+
+                            <h4>{{ produto.nome }}</h4>
+
+                            {% if produto.descricao %}
+                                <p>{{ produto.descricao }}</p>
+                            {% endif %}
+
+                            <div class="product-variations">
+
+                                {% for variacao in produto.variacoes %}
+
+                                    <div class="variation-item">
+
+                                        <span class="variation-name">
+                                            {{ variacao.nome }}
+                                        </span>
+
+                                        <span class="price">
+                                            R$ {{ "%.2f"|format(variacao.preco)|replace(".", ",") }}
+                                            <small>/ {{ variacao.unidade_venda }}</small>
+                                        </span>
+
+                                    </div>
+
+                                {% else %}
+
+                                    <p class="empty-variation">
+                                        Consulte a loja para informações
+                                        sobre este produto.
+                                    </p>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endif %}
+    {% endfor %}
+
+    {% if not possui_produtos.valor %}
+
+        <div class="empty-catalog">
+            <h3>Nosso catálogo está sendo preparado!</h3>
+
+            <p>
+                Em breve você poderá consultar
+                nossos produtos por aqui.
+            </p>
         </div>
-    </div>
 
-    <div class="product-grid">
+    {% endif %}
 
-        {% for produto in produtos %}
-        <article class="product-card">
-
-            <span class="category">
-                {{ produto.categoria }}
-            </span>
-
-            <h3>{{ produto.nome }}</h3>
-
-            <p>{{ produto.descricao }}</p>
-
-            <div class="price">
-                R$ {{ "%.2f"|format(produto.preco) }}
-                <small>/ {{ produto.unidade }}</small>
-            </div>
-
-            <button type="button" disabled>
-                Em breve
-            </button>
-
-        </article>
-        {% endfor %}
-
-    </div>
 </section>
 
 {% endblock %}
