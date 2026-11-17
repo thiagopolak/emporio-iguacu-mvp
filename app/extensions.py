@@ -1,6 +1,8 @@
-
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-# Instância compartilhada do banco de dados.
-# Será inicializada pela Application Factory.
+# Extensão de acesso ao banco
 db = SQLAlchemy()
+
+# Gerenciamento de migrações
+migrate = Migrate()
