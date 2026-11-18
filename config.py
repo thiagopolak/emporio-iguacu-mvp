@@ -30,3 +30,10 @@ class Config:
     DEBUG = os.getenv(
         "FLASK_DEBUG", "false"
     ).lower() in ("true", "1", "yes")
+
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+
+    SESSION_COOKIE_SECURE = os.getenv(
+        "SESSION_COOKIE_SECURE", "false"
+    ).lower() in ("true", "1", "yes")

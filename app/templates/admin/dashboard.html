@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block title %}Painel administrativo | Empório Iguaçu{% endblock %}
+
+{% block content %}
+
+<section class="admin-dashboard">
+
+    <span class="eyebrow">GESTÃO DA LOJA</span>
+
+    <h1>Painel administrativo</h1>
+
+    <p>
+        Olá, {{ current_user.nome }}.
+        Bem-vindo ao gerenciamento do Empório Iguaçu.
+    </p>
+
+    <div class="admin-card">
+
+        <h2>Gerenciamento de produtos</h2>
+
+        <p>
+            Nesta área serão disponibilizadas as ferramentas
+            para cadastro, edição e gerenciamento do catálogo.
+        </p>
+
+        <span class="feature-status">
+            Módulo em desenvolvimento
+        </span>
+
+    </div>
+
+    <form
+        method="POST"
+        action="{{ url_for('auth.logout') }}"
+    >
+        {{ logout_form.hidden_tag() }}
+
+        {{ logout_form.submit(class="admin-button") }}
+    </form>
+
+</section>
+
+{% endblock %}
