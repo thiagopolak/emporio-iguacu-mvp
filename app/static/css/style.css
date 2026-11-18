@@ -244,3 +244,116 @@ footer {
         padding: 15px 0;
     }
 }
+
+/* Área administrativa */
+
+.admin-auth {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 20px;
+    background: var(--cream);
+}
+
+.admin-card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--white);
+    padding: 36px;
+    border: 1px solid #e5ddd4;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(75, 38, 28, 0.07);
+}
+
+.admin-card h1,
+.admin-dashboard h1 {
+    color: var(--brown);
+    margin-bottom: 12px;
+}
+
+.form-field {
+    margin: 22px 0;
+}
+
+.form-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid #c8b8ac;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.form-control:focus {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.admin-button {
+    min-height: 46px;
+    padding: 12px 22px;
+    background: var(--brown);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-button:hover {
+    background: var(--brown-light);
+}
+
+.field-error {
+    display: block;
+    color: #a12626;
+    margin-top: 6px;
+}
+
+.flash {
+    padding: 12px;
+    margin: 16px 0;
+    border-radius: 6px;
+}
+
+.flash.success {
+    background: #e7f4e8;
+    color: #205c2c;
+}
+
+.flash.danger {
+    background: #fce8e8;
+    color: #9b1c1c;
+}
+
+.flash.warning {
+    background: #fff4d6;
+    color: #704b00;
+}
+
+.admin-dashboard {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 24px;
+}
+
+.admin-dashboard .admin-card {
+    max-width: none;
+    margin: 30px 0;
+}
+
+.feature-status {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: var(--cream);
+    color: var(--brown);
+    font-weight: bold;
+}

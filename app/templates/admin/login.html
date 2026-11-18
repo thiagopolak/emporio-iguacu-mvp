@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block title %}Acesso administrativo | Empório Iguaçu{% endblock %}
+
+{% block content %}
+
+<section class="admin-auth">
+
+    <div class="admin-card">
+
+        <span class="eyebrow">EMPÓRIO IGUAÇU</span>
+
+        <h1>Área administrativa</h1>
+
+        <p>
+            Acesse o sistema para gerenciar os produtos da loja.
+        </p>
+
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="form-field">
+
+                {{ form.email.label }}
+
+                {{ form.email(class="form-control") }}
+
+                {% for erro in form.email.errors %}
+                    <small class="field-error">{{ erro }}</small>
+                {% endfor %}
+
+            </div>
+
+            <div class="form-field">
+
+                {{ form.senha.label }}
+
+                {{ form.senha(class="form-control") }}
+
+                {% for erro in form.senha.errors %}
+                    <small class="field-error">{{ erro }}</small>
+                {% endfor %}
+
+            </div>
+
+            {{ form.submit(class="admin-button") }}
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

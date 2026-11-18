@@ -1,8 +1,7 @@
-
 from flask import Flask
 
 from config import Config
-from app.extensions import db, migrate
+from app.extensions import db, migrate, login_manager
 
 
 def create_app():
@@ -10,20 +9,39 @@ def create_app():
 
     app.config.from_object(Config)
 
-    # Inicializa as extensões
+    # Inicialização das extensões
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
 
-    # Registra os modelos no metadata do SQLAlchemy
+    login_manager.login_view = "auth.login"
+    login_manager.login_message = "Faça login para acessar esta área."
+    login_manager.login_message_category = "warning"
+    login_manager.session_protection = "strong"
+
+    # Registro dos modelos
     from app.models import (
         Categoria,
         Produto,
-        VariacaoProduto
+        VariacaoProduto,
+        Usuario
     )
 
-    # Registra as rotas
+    # Recuperação do usuário pela sessão
+    @login_manager.user_loader
+    def carregar_usuario(user_id):
+        try:
+            return db.session.get(Usuario, int(user_id))
+        except (TypeError, ValueError):
+            return None
+
+    # Registro dos blueprints
     from app.routes.main import main_bp
+    from app.routes.auth import auth_bp
+    from app.routes.admin import admin_bp
 
     app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(admin_bp)
 
     return app

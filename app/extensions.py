@@ -1,8 +1,10 @@
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
-# Extensão de acesso ao banco
 db = SQLAlchemy()
 
-# Gerenciamento de migrações
 migrate = Migrate()
+
+login_manager = LoginManager()
